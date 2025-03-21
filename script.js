@@ -1,4 +1,21 @@
 function minDate(dates) {
+	function minDate(dates) {
+  // Convert all date strings into Date objects and find the earliest one
+  const earliestDate = dates
+    .map(date => new Date(date)) // Convert each date string to a Date object
+    .reduce((min, current) => (current < min ? current : min)); // Find the earliest date
+  
+  // Convert the Date object back to the string format "YYYY/MM/DD"
+  const year = earliestDate.getFullYear();
+  const month = String(earliestDate.getMonth() + 1).padStart(2, '0');
+  const day = String(earliestDate.getDate()).padStart(2, '0');
+  
+  return `${year}/${month}/${day}`; // Return the formatted date
+}
+
+// Test cases
+console.log(minDate(["2023/03/01", "2023/03/02", "2023/03/03"])); // "2023/03/01"
+console.log(minDate(["2023/01/01", "2023/02/02", "2022/12/31"])); // "2022/12/31"
   //write you code here
 }
 
